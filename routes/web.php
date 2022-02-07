@@ -28,3 +28,5 @@ Route::get('logout/', [AuthController::class, 'destroy'])->name('admin.logout');
 
 Route::get('currency-converter/', [CurrencyController::class, 'index'])->name('currency-converter');
 Route::post('currency-converter/', [CurrencyController::class, 'convert'])->name('currency.convert');
+
+Route::get('converted-currency/', [CurrencyController::class, 'all'])->name('converted-currency');

@@ -30,6 +30,12 @@
                     <span>Converter</span>
                 </a>
             </li>
+            <li>
+                <a href="{{ route('converted-currency') }}">
+                    <i data-feather="pie-chart"></i>
+                    <span>Converted Currency</span>
+                </a>
+            </li>
 
             <li class="treeview">
                 <a href="#">

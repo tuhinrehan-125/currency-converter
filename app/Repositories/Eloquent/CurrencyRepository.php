@@ -7,5 +7,7 @@ use App\Repositories\Eloquent\BaseRepository;
 
 class CurrencyRepository extends BaseRepository implements ICurrency 
 {
-
+    public function model(){
+        return Currency::class;
+    }
 }

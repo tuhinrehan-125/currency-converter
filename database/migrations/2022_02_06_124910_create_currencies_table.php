@@ -18,6 +18,7 @@ class CreateCurrenciesTable extends Migration
             $table->integer('amount');
             $table->string('from_currency');
             $table->string('destination_currency');
+            $table->decimal('converted_amount', 20, 2)->nullable();
             $table->timestamps();
         });
     }
