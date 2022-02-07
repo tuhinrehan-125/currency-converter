@@ -5,9 +5,11 @@ namespace App\Http\Controllers;
 use AmrShawky\LaravelCurrency\Facade\Currency;
 
 use Illuminate\Http\Request;
+use App\Models\Currency as CurrencyModel;
 use Illuminate\Support\Facades\Http;
 use App\Repositories\Contracts\ICurrency;
 use App\Repositories\Eloquent\Criteria\LatestFirst;
+use Illuminate\Support\Facades\DB;
 
 class CurrencyController extends Controller
 {
@@ -66,6 +68,46 @@ class CurrencyController extends Controller
             new LatestFirst()
         ])->all();
         return view('currency-converter.converted_currency', ['currencies'=>$currencies]);
+    }
+
+    public function popularCurrency(){
+        // Raw Sql Query
+        // SELECT destination_currency, COUNT(*)
+        // FROM currencies
+        // Group By destination_currency
+        // Order By COUNT(*) DESC
+        // LIMIT 1
+        $popular = CurrencyModel::select(DB::raw("count(*) as total_converted, destination_currency"))
+                            ->groupBy('destination_currency')  
+                            ->orderBy('total_converted','desc')
+                            // ->limit(1)
+                            ->first();
+        return view('currency-converter.popular_currency', ['popular'=>$popular]);
+    }
+
+    public function totalConvertedInUSD() {
+        // Raw Query
+        // SELECT destination_currency, SUM(converted_amount)
+        // FROM currencies
+        // WHERE destination_currency = "USD"
+        // Group By destination_currency
+
+        $tCUSD = CurrencyModel::select(DB::raw("sum(converted_amount) as total_converted_usd, destination_currency"))
+                                ->where('destination_currency', 'USD')                    
+                                ->groupBy('destination_currency')
+                            ->first();
+
+        return view('currency-converter.total_converted_in_usd', ['totalConvertedUSD'=>$tCUSD]);
+    }
+
+    public function TotalConversionRequest() {
+        // Raw Sql Query
+        // SELECT count(id) as total_number_of_requests
+        // FROM currencies
+        $tCRequest = CurrencyModel::count('id');
+
+        return view('currency-converter.total_conversion_request', ['totalConversionRequest'=>$tCRequest]);
+        // dd($tCRequest);
     }
 
     public function findCurrency($id){

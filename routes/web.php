@@ -30,3 +30,6 @@ Route::get('currency-converter/', [CurrencyController::class, 'index'])->name('c
 Route::post('currency-converter/', [CurrencyController::class, 'convert'])->name('currency.convert');
 
 Route::get('converted-currency/', [CurrencyController::class, 'all'])->name('converted-currency');
+Route::get('popular-currency/', [CurrencyController::class, 'popularCurrency'])->name('popular-currency');
+Route::get('total-converted/', [CurrencyController::class, 'totalConvertedInUSD'])->name('total-converted');
+Route::get('conversion-request/', [CurrencyController::class, 'TotalConversionRequest'])->name('conversion-request');

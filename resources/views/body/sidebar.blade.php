@@ -36,6 +36,26 @@
                     <span>Converted Currency</span>
                 </a>
             </li>
+            <li>
+                <a href="{{ route('popular-currency') }}">
+                    <i data-feather="pie-chart"></i>
+                    <span>Popular Currency</span>
+                </a>
+            </li>
+
+            <li>
+                <a href="{{ route('total-converted') }}">
+                    <i data-feather="pie-chart"></i>
+                    <span>Total Converted In USD</span>
+                </a>
+            </li>
+
+            <li>
+                <a href="{{ route('conversion-request') }}">
+                    <i data-feather="pie-chart"></i>
+                    <span>Total Conversion Requests made</span>
+                </a>
+            </li>
 
             <li class="treeview">
                 <a href="#">
