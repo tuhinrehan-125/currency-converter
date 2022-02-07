@@ -12,8 +12,9 @@ class CurrencyTest extends TestCase
      *
      * @return void
      */
-    public function test_example()
+    public function all_currency()
     {
-        $this->assertTrue(true);
+        $response = $this->get('/converted-currency');
+        $response->assertTrue(200);
     }
 }
